@@ -23,6 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         func getNotificationSettings() {
             UNUserNotificationCenter.current().getNotificationSettings { settings in
             print("Notification settings: \(settings)")
+                
+            guard settings.authorizationStatus == .authorized else { return }
+            DispatchQueue.main.async {
+              UIApplication.shared.registerForRemoteNotifications()
+            }
+
             
             guard settings.authorizationStatus == .authorized else { return }
             DispatchQueue.main.async {
@@ -99,7 +105,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         .requestAuthorization(options: [.alert, .sound, .badge]) { // 2
         granted, error in
         print("Permission granted: \(granted)") // 3
+        
         }
+        
+    func application(
+      _ application: UIApplication,
+      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
+      let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+      let token = tokenParts.joined()
+      print("Device Token: \(token)")
+    }
+
+    func application(
+      _ application: UIApplication,
+      didFailToRegisterForRemoteNotificationsWithError error: Error) {
+      print("Failed to register: \(error)")
+    }
         
         
         
