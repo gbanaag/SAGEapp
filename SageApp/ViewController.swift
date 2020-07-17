@@ -8,8 +8,31 @@
 
 import UIKit
 import UserNotifications
+import CoreData
 
 class ViewController: UIViewController {
+    @IBOutlet weak var changeLabel: UILabel!
+    
+    @IBOutlet weak var switchOne: UISwitch!
+    @IBOutlet weak var switchTwo: UISwitch!
+    @IBOutlet weak var switchThree: UISwitch!
+    @IBOutlet weak var switchFour: UISwitch!
+    @IBOutlet weak var switchFive: UISwitch!
+    
+    
+    var switchOneOn = false
+    var switchTwoOn = false
+    var switchThreeOn = false
+    var switchFourOn = false
+    
+    
+    @IBOutlet weak var hellooLabel: UILabel!
+    @IBOutlet weak var textField: UITextField!
+    
+    
+    // SCORE LABEL AND VAR
+    @IBOutlet weak var scoreLabel: UILabel!
+    var score = Int()
     
     var theOfficeQuotes = [
         "”I am Beyoncé, always.” – Michael Scott",
@@ -100,6 +123,9 @@ class ViewController: UIViewController {
     
 
     override func viewDidLoad() {
+        getData()
+        scoreLabel.text = "\(score)"
+        
         super.viewDidLoad()
         
         quotesArray = [theOfficeQuotes, greysQuotes, friendsQuotes, avatarQuotes, criminalQuotes, goodPlaceQuotes, strangerQuotes, flashQuotes, euphoriaQuotes, umbrellaQuotes]
@@ -132,8 +158,121 @@ class ViewController: UIViewController {
         center.add(request) { (error) in
         }
     }
+    
+    @IBAction func twiceADay(_ sender: UISwitch) {
+        switchOne.setOn(true, animated: true)
+        switchTwo.setOn(false, animated: true)
+        switchThree.setOn(false, animated: true)
+        switchFour.setOn(false, animated: true)
+        switchFive.setOn(false, animated: true)
+    }
+    
+    @IBAction func onceADay(_ sender: UISwitch) {
+        switchOne.setOn(false, animated: true)
+        switchTwo.setOn(true, animated: true)
+        switchThree.setOn(false, animated: true)
+        switchFour.setOn(false, animated: true)
+        switchFive.setOn(false, animated: true)
+    }
+    
+    @IBAction func everyOtherDay(_ sender: UISwitch) {
+        switchOne.setOn(false, animated: true)
+        switchTwo.setOn(false, animated: true)
+        switchThree.setOn(true, animated: true)
+        switchFour.setOn(false, animated: true)
+        switchFive.setOn(false, animated: true)
+    }
+    
+    @IBAction func onceAWeek(_ sender: UISwitch) {
+        switchOne.setOn(false, animated: true)
+        switchTwo.setOn(false, animated: true)
+        switchThree.setOn(false, animated: true)
+        switchFour.setOn(true, animated: true)
+        switchFive.setOn(false, animated: true)
+    }
+    
+    @IBAction func turnOff(_ sender: UISwitch) {
+        switchOne.setOn(false, animated: true)
+        switchTwo.setOn(false, animated: true)
+        switchThree.setOn(false, animated: true)
+        switchFour.setOn(false, animated: true)
+        switchFive.setOn(true, animated: true)
+    }
+    
+    @IBAction func clickClick(_ sender: UIButton) {
+        changeLabel.text = "aaAAaaaaaAAhHHHHHh"
+    }
+    
+//    let defaults = UserDefaults.standard
+//
+//
+//
+//
+//    var nameInputted = ""
+//    @IBAction func submitName(_ sender: UIButton) {
+//        nameInputted = textField.text
+//        print(nameInputted)
+//    }
+//
+//    let name = nameInputted
+//    defaults.set(name, forKey: "name")
+//
+//
+//
 
-  
 
-}
+
+    @IBAction func askForFood(_ sender: UIButton) {
+//        hellooLabel.text = newTitle + " aight"
+    }
+    
+    
+    @IBAction func increaseScore(_ sender: Any) {
+        score += 1
+        scoreLabel.text = "\(score)"
+    }
+    
+    @IBAction func saveData(_ sender: Any) {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Entity", in: context)
+        let newEntity = NSManagedObject(entity: entity!, insertInto: context)
+        
+        newEntity.setValue(score, forKey: "number")
+        
+        do {
+            try context.save()
+            print("saved")
+        }   catch {
+            print("Failed saving")
+        }
+        
+    }
+    
+    func getData() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Entity")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject]
+            {
+                score = data.value(forKey: "number") as! Int
+            }
+        } catch {
+                print("Failed")
+            }
+        }
+    }
+    
+    
+    
+    
+
+
+
+
+//switchOneOn = false
+//switchTwoOn = true
+//switchThreeOn = false
+//switchFourOn = false
 
