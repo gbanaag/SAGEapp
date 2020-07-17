@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		714E5E6424C17F5F0066526A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E5E6324C17F5F0066526A /* Date+Extensions.swift */; };
 		7159412C24BF87D4000219E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7159412B24BF87D4000219E3 /* AppDelegate.swift */; };
 		7159412E24BF87D4000219E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7159412D24BF87D4000219E3 /* SceneDelegate.swift */; };
 		7159413024BF87D4000219E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7159412F24BF87D4000219E3 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		714E5E6324C17F5F0066526A /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		7159412824BF87D4000219E3 /* SageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7159412B24BF87D4000219E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7159412D24BF87D4000219E3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				7159412B24BF87D4000219E3 /* AppDelegate.swift */,
 				7159412D24BF87D4000219E3 /* SceneDelegate.swift */,
 				7159412F24BF87D4000219E3 /* ViewController.swift */,
+				714E5E6324C17F5F0066526A /* Date+Extensions.swift */,
 				7159413124BF87D4000219E3 /* Main.storyboard */,
 				7159413724BF87DA000219E3 /* Assets.xcassets */,
 				7159413924BF87DA000219E3 /* LaunchScreen.storyboard */,
@@ -144,6 +147,7 @@
 				7159413024BF87D4000219E3 /* ViewController.swift in Sources */,
 				7159413624BF87D4000219E3 /* SageApp.xcdatamodeld in Sources */,
 				7159412C24BF87D4000219E3 /* AppDelegate.swift in Sources */,
+				714E5E6424C17F5F0066526A /* Date+Extensions.swift in Sources */,
 				7159412E24BF87D4000219E3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

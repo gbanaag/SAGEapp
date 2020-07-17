@@ -29,10 +29,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var hellooLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
     
+
+    @IBOutlet weak var timePicker: UIDatePicker!
+    
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    
     
     // SCORE LABEL AND VAR
     @IBOutlet weak var scoreLabel: UILabel!
     var score = Int()
+//    
+//    var hour = Int()
+//    var minute = Int()
     
     var theOfficeQuotes = [
         "”I am Beyoncé, always.” – Michael Scott",
@@ -126,6 +135,10 @@ class ViewController: UIViewController {
         getData()
         scoreLabel.text = "\(score)"
         
+//        dateLabel.text = "\(hour):\(minute)"
+        
+        timePicker?.datePickerMode = .dateAndTime
+        timePicker?.minimumDate = Date.calculateDate(day: 1, month: 1, year: 2020, hour: 0, minute: 0)
         super.viewDidLoad()
         
         quotesArray = [theOfficeQuotes, greysQuotes, friendsQuotes, avatarQuotes, criminalQuotes, goodPlaceQuotes, strangerQuotes, flashQuotes, euphoriaQuotes, umbrellaQuotes]
@@ -158,6 +171,14 @@ class ViewController: UIViewController {
         center.add(request) { (error) in
         }
     }
+    
+    @IBAction func changeValue(sender: UIDatePicker, forEvent event: UIEvent) {
+        dateLabel?.text = "Day: \(sender.date.getDayMonthYearHourMinuteSecond().day), month: \(sender.date.getDayMonthYearHourMinuteSecond().month), year: \(sender.date.getDayMonthYearHourMinuteSecond().year), Hour: \(sender.date.getDayMonthYearHourMinuteSecond().hour), minute: \(sender.date.getDayMonthYearHourMinuteSecond().minute), second: \(sender.date.getDayMonthYearHourMinuteSecond().second)"
+    }
+    
+//    @IBAction func valueChanged(sender: UIDatePicker, forEvent event: UIEvent) {
+//
+//    }
     
     @IBAction func twiceADay(_ sender: UISwitch) {
         switchOne.setOn(true, animated: true)
@@ -220,17 +241,25 @@ class ViewController: UIViewController {
 //
 //
 
-
-
-    @IBAction func askForFood(_ sender: UIButton) {
-//        hellooLabel.text = newTitle + " aight"
-    }
+//    @IBAction func pickDate(_ sender: UIDatePicker) {
+////        hour = (sender as! UIDatePicker).date.getDayMonthYearHourMinuteSecond().hour
+////        minute = (sender as! UIDatePicker).date.getDayMonthYearHourMinuteSecond().minute
+//        hour = 5
+//        minute = 30
+//        dateLabel.text = "\(hour):\(minute)"
+//    }
     
     
     @IBAction func increaseScore(_ sender: Any) {
         score += 1
         scoreLabel.text = "\(score)"
     }
+    
+    @IBAction func decreaseScore(_ sender: Any) {
+        score -= 1
+        scoreLabel.text = "\(score)"
+    }
+    
     
     @IBAction func saveData(_ sender: Any) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
